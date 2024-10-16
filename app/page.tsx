@@ -1,6 +1,6 @@
 
 export default function Home() {
   return (
-    <div>Hello Airbnb!</div>
+    <div className="text-[90px]">Hello Airbnb!</div>
   );
 }
