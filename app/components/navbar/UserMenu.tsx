@@ -1,14 +1,27 @@
 'use client';
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import UserMenuItem from "./MenuItem";
-import router from "next/router";
+// import router from "next/router";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 
 const UserMenu = () => {
 
+// const router = useRouter();
+  const registerModal = useRegisterModal();
+  // const loginModal = useLoginModal();
+  // const rentModal = useRentModal();
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const closeMenu = () => setIsOpen(false);
+
+    window.addEventListener("click", closeMenu);
+
+    return () => window.removeEventListener("click", closeMenu);
+  }, []);
 
   const toggleOpen = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -17,7 +30,15 @@ const UserMenu = () => {
     },
     []
   );
-  
+
+  // const onRent = useCallback(() => {
+  //   if (!currentUser) {
+  //     return loginModal.onOpen();
+  //   }
+  //   rentModal.onOpen();
+  // }, [currentUser, loginModal, rentModal]);
+
+
   return (
     <div className="relative ">
       <div className="flex flex-row items-center gap-3">
@@ -56,7 +77,7 @@ const UserMenu = () => {
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
-            { (
+            {/* { (
               <>
                 <UserMenuItem
                   onClick={() => router.push("/trips")}
@@ -81,12 +102,12 @@ const UserMenu = () => {
                 <hr />
                 <UserMenuItem onClick={() => {}} label="Logout" />
               </>
-            // ) : (
-            //   <>
-            //     <UserMenuItem onClick={() => {}} label="Login" />
-            //     <UserMenuItem onClick={() => {}} label="Sign up" />
-            //   </>
-            )}
+            ) : ( */}
+              <>
+                <UserMenuItem onClick={() => {}} label="Login" />
+                <UserMenuItem onClick={registerModal.onOpen} label="Sign up" />
+              </>
+            
           </div>
         </div>
       )}
