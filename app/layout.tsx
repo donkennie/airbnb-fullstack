@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import ToasterProvider from "./providers/ToasterProvider";
 import RegisterModal from "./components/modal/RegisterModal";
+import LoginModal from "./components/modal/Login.Modal";
 
 export const metadata: Metadata = {
   title: "Airbnb",
@@ -23,9 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
           <ToasterProvider />
-          {/* <LoginModal />
-          <RentModal />
-          <SearchModal /> */}
+           <LoginModal />
+          {/* <RentModal />
+          <SearchModal />  */}
           <RegisterModal />
           <Navbar/>
         {children}

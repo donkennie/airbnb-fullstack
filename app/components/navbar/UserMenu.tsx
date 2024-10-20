@@ -5,13 +5,14 @@ import { useCallback, useEffect, useState } from "react";
 import UserMenuItem from "./MenuItem";
 // import router from "next/router";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 
 const UserMenu = () => {
 
 // const router = useRouter();
   const registerModal = useRegisterModal();
-  // const loginModal = useLoginModal();
+  const loginModal = useLoginModal();
   // const rentModal = useRentModal();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -104,7 +105,7 @@ const UserMenu = () => {
               </>
             ) : ( */}
               <>
-                <UserMenuItem onClick={() => {}} label="Login" />
+                <UserMenuItem onClick={loginModal.onOpen} label="Login" />
                 <UserMenuItem onClick={registerModal.onOpen} label="Sign up" />
               </>
             
