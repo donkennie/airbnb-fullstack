@@ -12,10 +12,10 @@ import toast from "react-hot-toast";
 import Button from "@/app/components/Button";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
-// import useLoginModal from "@/app/hooks/useLoginModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal = () => {
-//   const loginModal = useLoginModal();
+  const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,7 +41,7 @@ const RegisterModal = () => {
         .then(() => {
           toast.success("User created!");
           registerModal.onClose();
-        //   loginModal.onOpen();
+          loginModal.onOpen();
           reset();
         })
         .catch((err) => {
@@ -51,7 +51,7 @@ const RegisterModal = () => {
           setIsLoading(false);
         });
     },
-    [registerModal, reset] //
+    [registerModal, loginModal, reset]
   );
 
   const bodyContent = useMemo(
@@ -109,7 +109,7 @@ const RegisterModal = () => {
           <div
             onClick={() => {
               registerModal.onClose();
-            //   loginModal.onOpen();
+              loginModal.onOpen();
             }}
             className="text-stone-800 cursor-pointer hover:underline"
           >
