@@ -23,7 +23,7 @@ export async function POST(request: Request) {
         name,
         hashedPassword,
       },
-    });
+    }); 
     return NextResponse.json(user);
   } catch (err) {
     console.error("REGISTER", err);
